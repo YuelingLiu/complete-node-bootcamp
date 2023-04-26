@@ -1,0 +1,7 @@
+{
+  "screencastMode.keyboardShortcutsFormat": "command",
+  "screencastMode.onlyKeyboardShortcuts": false,
+  "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+  "liveServer.settings.ChromeDebuggingAttachment": false,
+  "liveServer.settings.CustomBrowser": "chrome"
+}
