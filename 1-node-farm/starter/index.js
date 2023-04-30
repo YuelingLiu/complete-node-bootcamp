@@ -61,7 +61,7 @@ const temProduct = fs.readFileSync(
 // this is synchornous .
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
-//console.log(dataObj);
+console.log('I want to check what is dataObj', dataObj);
 //  this is a callback function
 
 // SERVER
@@ -73,12 +73,12 @@ const server = http.createServer((req, res) => {
 
   const { query, pathname } = url.parse(req.url, true);
 
-  console.log('checking query', query);
+  console.log('I want checking query', query);
   console.log('checking pathname', pathname);
 
   if (pathname === '/' || pathname === '/overview') {
     // WE NEED TO actually need to read the tempalate
-
+    res.writeHead(200, { 'Content-type': 'application/json' });
     const cardsHtml = dataObj
       .map((el) => replaceTemplate(temCard, el))
       .join('');
@@ -89,9 +89,10 @@ const server = http.createServer((req, res) => {
     // console.log(output);
     res.end(output);
   } else if (pathname === '/product') {
-    // loop  through dataOBj array
-    // el is to hold the data
-    console.log('Checking query in product page ....', query);
+    const product = dataObj[query.id];
+
+    res.writeHead(200, { 'Content-type': 'application/json' });
+
     //API
   } else if (pathname === '/api') {
     fs.readFile(
